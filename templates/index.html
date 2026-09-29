@@ -1,0 +1,2404 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nexra Education</title>
+
+    <style>
+        :root {
+            --brown-dark: #3E2723;
+            --brown-main: #6D4C41;
+            --brown-light: #806F69;
+            --background: #FAF8F6;
+            --card: #FFFFFF;
+            --border: #E8E0DC;
+            --text: #3E2723;
+            --muted: #806F69;
+            --success: #4F6F52;
+            --error: #A94442;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            height: 70px;
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 25px;
+
+            position: relative;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--brown-dark);
+            letter-spacing: 0.5px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-button {
+            border: 1px solid var(--border);
+            background: var(--background);
+            color: var(--brown-main);
+
+            padding: 9px 13px;
+            border-radius: 10px;
+
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+        .header-button:hover {
+            background: var(--card);
+            border-color: var(--brown-main);
+        }
+
+        .language-container {
+            position: relative;
+        }
+
+        .language-button {
+            border: 1px solid var(--border);
+            background: var(--background);
+            color: var(--brown-main);
+
+            padding: 9px 15px;
+            border-radius: 10px;
+
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .language-menu {
+            position: absolute;
+            top: 45px;
+            left: 0;
+
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+
+            width: 130px;
+
+            box-shadow: 0 8px 25px rgba(62, 39, 35, 0.08);
+
+            display: none;
+            overflow: hidden;
+
+            z-index: 100;
+        }
+
+        .language-menu button {
+            width: 100%;
+            border: none;
+            background: transparent;
+
+            padding: 12px;
+
+            text-align: center;
+            cursor: pointer;
+
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .language-menu button:hover {
+            background: var(--background);
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        main {
+            width: 100%;
+            max-width: 500px;
+
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .brand-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .brand-section h1 {
+            font-size: 32px;
+            color: var(--brown-dark);
+            margin-bottom: 8px;
+        }
+
+        .brand-section p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card {
+            background: var(--card);
+
+            border: 1px solid var(--border);
+            border-radius: 20px;
+
+            padding: 30px;
+
+            box-shadow: 0 12px 35px rgba(62, 39, 35, 0.06);
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 22px;
+            color: var(--brown-dark);
+
+            margin-bottom: 8px;
+        }
+
+        .section-description {
+            font-size: 14px;
+            color: var(--muted);
+
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            color: var(--text);
+        }
+
+        input,
+        select {
+            width: 100%;
+
+            height: 48px;
+
+            border: 1px solid var(--border);
+            border-radius: 12px;
+
+            padding: 0 14px;
+
+            background: var(--background);
+            color: var(--text);
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--brown-main);
+            background: #FFFFFF;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .primary-button {
+            width: 100%;
+            height: 48px;
+
+            border: none;
+            border-radius: 13px;
+
+            background: var(--brown-main);
+            color: white;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .primary-button:hover {
+            background: var(--brown-dark);
+        }
+
+        .secondary-button {
+            width: 100%;
+            height: 45px;
+
+            border: 1px solid var(--border);
+            border-radius: 13px;
+
+            background: var(--card);
+            color: var(--brown-main);
+
+            font-size: 14px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            margin-top: 10px;
+
+            transition: 0.2s;
+        }
+
+        .secondary-button:hover {
+            background: var(--background);
+        }
+
+        .secondary-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* =========================
+           VERIFICATION
+        ========================= */
+
+        .verification-email {
+            background: var(--background);
+
+            border: 1px solid var(--border);
+            border-radius: 12px;
+
+            padding: 12px 14px;
+
+            margin-bottom: 20px;
+
+            text-align: center;
+
+            color: var(--brown-main);
+
+            font-size: 14px;
+            font-weight: 600;
+
+            word-break: break-word;
+        }
+
+        .code-input {
+            text-align: center;
+
+            direction: ltr;
+
+            font-size: 22px;
+            font-weight: 700;
+
+            letter-spacing: 7px;
+        }
+
+        .resend-info {
+            text-align: center;
+
+            margin-top: 13px;
+
+            color: var(--muted);
+
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           MESSAGES
+        ========================= */
+
+        .message {
+            margin-top: 15px;
+
+            padding: 11px 13px;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+            line-height: 1.6;
+
+            display: none;
+        }
+
+        .message.error {
+            display: block;
+
+            background: #FBEAEA;
+            color: var(--error);
+        }
+
+        .message.success {
+            display: block;
+
+            background: #EAF2EA;
+            color: var(--success);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 0 16px;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .header-actions {
+                gap: 5px;
+            }
+
+            .header-button,
+            .language-button {
+                padding: 8px 9px;
+                font-size: 12px;
+            }
+
+            main {
+                margin-top: 35px;
+            }
+
+            .card {
+                padding: 23px 20px;
+                border-radius: 17px;
+            }
+
+            .brand-section h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+
+        <div class="logo">
+            Nexra Education
+        </div>
+
+        <div class="header-actions">
+
+            <!-- LOGIN -->
+
+            <button
+                class="header-button"
+                id="loginHeaderButton"
+                type="button"
+            >
+                Login
+            </button>
+
+
+            <!-- SIGN UP -->
+
+            <button
+                class="header-button"
+                id="signupHeaderButton"
+                type="button"
+            >
+                Sign Up
+            </button>
+
+
+            <!-- LANGUAGE -->
+
+            <div class="language-container">
+
+                <button
+                    class="language-button"
+                    id="languageButton"
+                    type="button"
+                >
+                    العربية
+                </button>
+
+                <div
+                    class="language-menu"
+                    id="languageMenu"
+                >
+                    <button
+                        type="button"
+                        onclick="changeLanguage('ar')"
+                    >
+                        العربية
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="changeLanguage('en')"
+                    >
+                        English
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main>
+
+        <div class="brand-section">
+
+            <h1>
+                Nexra Education
+            </h1>
+
+            <p id="brandDescription">
+                منصتك التعليمية الذكية
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <!-- =========================
+                 LOGIN
+            ========================= -->
+
+            <section
+                class="section"
+                id="loginSection"
+            >
+
+                <h2
+                    class="section-title"
+                    id="loginTitle"
+                >
+                    تسجيل الدخول
+                </h2>
+
+                <p
+                    class="section-description"
+                    id="loginDescription"
+                >
+                    سجل الدخول إلى حسابك في Nexra Education.
+                </p>
+
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+
+                        <label
+                            for="loginEmail"
+                            id="loginEmailLabel"
+                        >
+                            البريد الإلكتروني
+                        </label>
+
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            name="loginEmail"
+                            placeholder="example@email.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="loginPassword"
+                            id="loginPasswordLabel"
+                        >
+                            كلمة المرور
+                        </label>
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            name="loginPassword"
+                            placeholder="أدخل كلمة المرور"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                        id="loginButton"
+                    >
+                        تسجيل الدخول
+                    </button>
+
+                </form>
+
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="loginSignupButton"
+                >
+                    إنشاء حساب جديد
+                </button>
+
+
+                <div
+                    class="message"
+                    id="loginMessage"
+                ></div>
+
+            </section>
+
+
+            <!-- =========================
+                 STEP 1
+            ========================= -->
+
+            <section
+                class="section active"
+                id="registrationSection"
+            >
+
+                <h2
+                    class="section-title"
+                    id="registrationTitle"
+                >
+                    إنشاء حساب
+                </h2>
+
+                <p
+                    class="section-description"
+                    id="registrationDescription"
+                >
+                    ابدأ رحلتك التعليمية مع Nexra Education
+                </p>
+
+
+                <form id="studentForm">
+
+                    <div class="form-group">
+
+                        <label
+                            for="email"
+                            id="emailLabel"
+                        >
+                            البريد الإلكتروني
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="example@email.com"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="name"
+                            id="nameLabel"
+                        >
+                            الاسم الكامل
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="اكتب اسمك الكامل"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="grade"
+                            id="gradeLabel"
+                        >
+                            الصف الدراسي
+                        </label>
+
+                        <select
+                            id="grade"
+                            name="grade"
+                            required
+                        >
+
+                            <option
+                                value=""
+                                id="gradePlaceholder"
+                            >
+                                اختر الصف الدراسي
+                            </option>
+
+                            <option value="1_primary">
+                                الصف الأول الابتدائي
+                            </option>
+
+                            <option value="2_primary">
+                                الصف الثاني الابتدائي
+                            </option>
+
+                            <option value="3_primary">
+                                الصف الثالث الابتدائي
+                            </option>
+
+                            <option value="4_primary">
+                                الصف الرابع الابتدائي
+                            </option>
+
+                            <option value="5_primary">
+                                الصف الخامس الابتدائي
+                            </option>
+
+                            <option value="6_primary">
+                                الصف السادس الابتدائي
+                            </option>
+
+                            <option value="1_preparatory">
+                                الصف الأول الإعدادي
+                            </option>
+
+                            <option value="2_preparatory">
+                                الصف الثاني الإعدادي
+                            </option>
+
+                            <option value="3_preparatory">
+                                الصف الثالث الإعدادي
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                        id="continueButton"
+                    >
+                        متابعة
+                    </button>
+
+                </form>
+
+
+                <div
+                    class="message"
+                    id="registrationMessage"
+                ></div>
+
+            </section>
+
+
+            <!-- =========================
+                 STEP 2
+            ========================= -->
+
+            <section
+                class="section"
+                id="verificationSection"
+            >
+
+                <h2
+                    class="section-title"
+                    id="verificationTitle"
+                >
+                    تأكيد البريد الإلكتروني
+                </h2>
+
+                <p
+                    class="section-description"
+                    id="verificationDescription"
+                >
+                    أرسلنا رمز التحقق إلى بريدك الإلكتروني.
+                    أدخل الرمز للمتابعة.
+                </p>
+
+
+                <div
+                    class="verification-email"
+                    id="verificationEmail"
+                ></div>
+
+
+                <div class="form-group">
+
+                    <label
+                        for="verificationCode"
+                        id="codeLabel"
+                    >
+                        رمز التحقق
+                    </label>
+
+                    <input
+                        type="text"
+                        id="verificationCode"
+                        class="code-input"
+                        inputmode="numeric"
+                        maxlength="6"
+                        autocomplete="one-time-code"
+                        placeholder="000000"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="verifyButton"
+                >
+                    تأكيد الرمز
+                </button>
+
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="resendButton"
+                    disabled
+                >
+                    إعادة إرسال الكود بعد 60 ثانية
+                </button>
+
+
+                <div
+                    class="resend-info"
+                    id="resendInfo"
+                >
+                    يمكنك طلب رمز جديد بعد انتهاء المؤقت.
+                </div>
+
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="backButton"
+                >
+                    العودة
+                </button>
+
+
+                <div
+                    class="message"
+                    id="verificationMessage"
+                ></div>
+
+            </section>
+
+
+            <!-- =========================
+                 STEP 3
+            ========================= -->
+
+            <section
+                class="section"
+                id="accountSection"
+            >
+
+                <h2
+                    class="section-title"
+                    id="accountTitle"
+                >
+                    إنشاء كلمة المرور
+                </h2>
+
+                <p
+                    class="section-description"
+                    id="accountDescription"
+                >
+                    أنشئ كلمة مرور قوية لحماية حسابك.
+                </p>
+
+
+                <form id="accountForm">
+
+                    <div class="form-group">
+
+                        <label
+                            for="password"
+                            id="passwordLabel"
+                        >
+                            كلمة المرور
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="أدخل كلمة المرور"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="confirmPassword"
+                            id="confirmPasswordLabel"
+                        >
+                            تأكيد كلمة المرور
+                        </label>
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="أعد كتابة كلمة المرور"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                        id="createAccountButton"
+                    >
+                        إنشاء الحساب
+                    </button>
+
+                </form>
+
+
+                <div
+                    class="message"
+                    id="accountMessage"
+                ></div>
+
+            </section>
+
+        </div>
+
+
+        <footer>
+            © 2026 Nexra Education
+        </footer>
+
+    </main>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        /* =========================
+           VARIABLES
+        ========================= */
+
+        let studentData = {};
+
+        let cooldownTimer = null;
+        let cooldownRemaining = 0;
+
+        const SEND_COOLDOWN_SECONDS = 60;
+
+
+        /* =========================
+           ELEMENTS
+        ========================= */
+
+        const languageButton =
+            document.getElementById("languageButton");
+
+        const languageMenu =
+            document.getElementById("languageMenu");
+
+        const loginHeaderButton =
+            document.getElementById("loginHeaderButton");
+
+        const signupHeaderButton =
+            document.getElementById("signupHeaderButton");
+
+        const loginSignupButton =
+            document.getElementById("loginSignupButton");
+
+        const loginForm =
+            document.getElementById("loginForm");
+
+        const studentForm =
+            document.getElementById("studentForm");
+
+        const verifyButton =
+            document.getElementById("verifyButton");
+
+        const resendButton =
+            document.getElementById("resendButton");
+
+        const backButton =
+            document.getElementById("backButton");
+
+        const accountForm =
+            document.getElementById("accountForm");
+
+        const verificationCode =
+            document.getElementById("verificationCode");
+
+
+        /* =========================
+           LANGUAGE TRANSLATIONS
+        ========================= */
+
+        const translations = {
+
+            ar: {
+
+                brandDescription:
+                    "منصتك التعليمية الذكية",
+
+                login:
+                    "تسجيل الدخول",
+
+                signup:
+                    "إنشاء حساب",
+
+                loginDescription:
+                    "سجل الدخول إلى حسابك في Nexra Education.",
+
+                loginEmailLabel:
+                    "البريد الإلكتروني",
+
+                loginPasswordLabel:
+                    "كلمة المرور",
+
+                loginButton:
+                    "تسجيل الدخول",
+
+                loginSignupButton:
+                    "إنشاء حساب جديد",
+
+                loginSuccess:
+                    "تم تسجيل الدخول بنجاح! مرحبًا {name} 👋",
+
+                registrationTitle:
+                    "إنشاء حساب",
+
+                registrationDescription:
+                    "ابدأ رحلتك التعليمية مع Nexra Education",
+
+                emailLabel:
+                    "البريد الإلكتروني",
+
+                nameLabel:
+                    "الاسم الكامل",
+
+                gradeLabel:
+                    "الصف الدراسي",
+
+                gradePlaceholder:
+                    "اختر الصف الدراسي",
+
+                continueButton:
+                    "متابعة",
+
+                verificationTitle:
+                    "تأكيد البريد الإلكتروني",
+
+                verificationDescription:
+                    "أرسلنا رمز التحقق إلى بريدك الإلكتروني. أدخل الرمز للمتابعة.",
+
+                codeLabel:
+                    "رمز التحقق",
+
+                verifyButton:
+                    "تأكيد الرمز",
+
+                resendCode:
+                    "إعادة إرسال الكود",
+
+                resendIn:
+                    "إعادة إرسال الكود بعد {seconds} ثانية",
+
+                resendInfo:
+                    "يمكنك طلب رمز جديد بعد انتهاء المؤقت.",
+
+                backButton:
+                    "العودة",
+
+                accountTitle:
+                    "إنشاء كلمة المرور",
+
+                accountDescription:
+                    "أنشئ كلمة مرور قوية لحماية حسابك.",
+
+                passwordLabel:
+                    "كلمة المرور",
+
+                confirmPasswordLabel:
+                    "تأكيد كلمة المرور",
+
+                createAccountButton:
+                    "إنشاء الحساب",
+
+                passwordMismatch:
+                    "كلمتا المرور غير متطابقتين.",
+
+                accountCreated:
+                    "تم إنشاء حسابك بنجاح! 🎉",
+
+                cooldownMessage:
+                    "يمكنك طلب كود جديد بعد {seconds} ثانية."
+
+            },
+
+
+            en: {
+
+                brandDescription:
+                    "Your smart educational platform",
+
+                login:
+                    "Login",
+
+                signup:
+                    "Sign Up",
+
+                loginDescription:
+                    "Log in to your Nexra Education account.",
+
+                loginEmailLabel:
+                    "Email Address",
+
+                loginPasswordLabel:
+                    "Password",
+
+                loginButton:
+                    "Login",
+
+                loginSignupButton:
+                    "Create New Account",
+
+                loginSuccess:
+                    "Login successful! Welcome {name} 👋",
+
+                registrationTitle:
+                    "Create Account",
+
+                registrationDescription:
+                    "Start your learning journey with Nexra Education",
+
+                emailLabel:
+                    "Email Address",
+
+                nameLabel:
+                    "Full Name",
+
+                gradeLabel:
+                    "Grade",
+
+                gradePlaceholder:
+                    "Select your grade",
+
+                continueButton:
+                    "Continue",
+
+                verificationTitle:
+                    "Verify Your Email",
+
+                verificationDescription:
+                    "We sent a verification code to your email. Enter the code to continue.",
+
+                codeLabel:
+                    "Verification Code",
+
+                verifyButton:
+                    "Verify Code",
+
+                resendCode:
+                    "Resend Code",
+
+                resendIn:
+                    "Resend code in {seconds}s",
+
+                resendInfo:
+                    "You can request a new code after the timer ends.",
+
+                backButton:
+                    "Back",
+
+                accountTitle:
+                    "Create Password",
+
+                accountDescription:
+                    "Create a strong password to protect your account.",
+
+                passwordLabel:
+                    "Password",
+
+                confirmPasswordLabel:
+                    "Confirm Password",
+
+                createAccountButton:
+                    "Create Account",
+
+                passwordMismatch:
+                    "Passwords do not match.",
+
+                accountCreated:
+                    "Your account has been created successfully! 🎉",
+
+                cooldownMessage:
+                    "You can request a new code in {seconds} seconds."
+
+            }
+
+        };
+
+
+        /* =========================
+           LANGUAGE
+        ========================= */
+
+        let currentLanguage = "ar";
+
+
+        function changeLanguage(language) {
+
+            currentLanguage = language;
+
+            document.documentElement.lang = language;
+
+            document.documentElement.dir =
+                language === "ar" ? "rtl" : "ltr";
+
+            const t = translations[language];
+
+
+            document.getElementById("brandDescription")
+                .textContent = t.brandDescription;
+
+
+            loginHeaderButton.textContent =
+                t.login;
+
+            signupHeaderButton.textContent =
+                t.signup;
+
+
+            document.getElementById("loginTitle")
+                .textContent = t.login;
+
+            document.getElementById("loginDescription")
+                .textContent = t.loginDescription;
+
+            document.getElementById("loginEmailLabel")
+                .textContent = t.loginEmailLabel;
+
+            document.getElementById("loginPasswordLabel")
+                .textContent = t.loginPasswordLabel;
+
+            document.getElementById("loginButton")
+                .textContent = t.loginButton;
+
+            loginSignupButton.textContent =
+                t.loginSignupButton;
+
+
+            document.getElementById("registrationTitle")
+                .textContent = t.registrationTitle;
+
+            document.getElementById("registrationDescription")
+                .textContent = t.registrationDescription;
+
+            document.getElementById("emailLabel")
+                .textContent = t.emailLabel;
+
+            document.getElementById("nameLabel")
+                .textContent = t.nameLabel;
+
+            document.getElementById("gradeLabel")
+                .textContent = t.gradeLabel;
+
+            document.getElementById("gradePlaceholder")
+                .textContent = t.gradePlaceholder;
+
+            document.getElementById("continueButton")
+                .textContent = t.continueButton;
+
+            document.getElementById("verificationTitle")
+                .textContent = t.verificationTitle;
+
+            document.getElementById("verificationDescription")
+                .textContent = t.verificationDescription;
+
+            document.getElementById("codeLabel")
+                .textContent = t.codeLabel;
+
+            document.getElementById("verifyButton")
+                .textContent = t.verifyButton;
+
+            document.getElementById("resendInfo")
+                .textContent = t.resendInfo;
+
+            document.getElementById("backButton")
+                .textContent = t.backButton;
+
+            document.getElementById("accountTitle")
+                .textContent = t.accountTitle;
+
+            document.getElementById("accountDescription")
+                .textContent = t.accountDescription;
+
+            document.getElementById("passwordLabel")
+                .textContent = t.passwordLabel;
+
+            document.getElementById("confirmPasswordLabel")
+                .textContent = t.confirmPasswordLabel;
+
+            document.getElementById("createAccountButton")
+                .textContent = t.createAccountButton;
+
+            languageButton.textContent =
+                language === "ar"
+                    ? "العربية"
+                    : "English";
+
+
+            updateResendButton();
+
+            languageMenu.style.display = "none";
+        }
+
+
+        /* =========================
+           LANGUAGE MENU
+        ========================= */
+
+        languageButton.addEventListener(
+            "click",
+            function () {
+
+                if (
+                    languageMenu.style.display === "block"
+                ) {
+
+                    languageMenu.style.display =
+                        "none";
+
+                } else {
+
+                    languageMenu.style.display =
+                        "block";
+                }
+
+            }
+        );
+
+
+        document.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    !event.target.closest(
+                        ".language-container"
+                    )
+                ) {
+
+                    languageMenu.style.display =
+                        "none";
+                }
+
+            }
+        );
+
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        function showSection(sectionId) {
+
+            document.querySelectorAll(".section")
+                .forEach(section => {
+
+                    section.classList.remove(
+                        "active"
+                    );
+
+                });
+
+
+            document.getElementById(sectionId)
+                .classList.add("active");
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+
+        /* =========================
+           MESSAGES
+        ========================= */
+
+        function showMessage(
+            elementId,
+            message,
+            type
+        ) {
+
+            const element =
+                document.getElementById(
+                    elementId
+                );
+
+            element.textContent =
+                message;
+
+            element.className =
+                "message " + type;
+        }
+
+
+        function clearMessage(elementId) {
+
+            const element =
+                document.getElementById(
+                    elementId
+                );
+
+            element.textContent = "";
+
+            element.className =
+                "message";
+        }
+
+
+        /* =========================
+           HEADER NAVIGATION
+        ========================= */
+
+        loginHeaderButton.addEventListener(
+            "click",
+            function () {
+
+                clearMessage("loginMessage");
+
+                showSection("loginSection");
+
+                document.getElementById(
+                    "loginEmail"
+                ).focus();
+
+            }
+        );
+
+
+        signupHeaderButton.addEventListener(
+            "click",
+            function () {
+
+                clearMessage(
+                    "registrationMessage"
+                );
+
+                showSection(
+                    "registrationSection"
+                );
+
+                document.getElementById(
+                    "email"
+                ).focus();
+
+            }
+        );
+
+
+        loginSignupButton.addEventListener(
+            "click",
+            function () {
+
+                clearMessage(
+                    "loginMessage"
+                );
+
+                showSection(
+                    "registrationSection"
+                );
+
+                document.getElementById(
+                    "email"
+                ).focus();
+
+            }
+        );
+
+
+        /* =========================
+           COOLDOWN
+        ========================= */
+
+        function clearCooldownTimer() {
+
+            if (cooldownTimer !== null) {
+
+                clearInterval(
+                    cooldownTimer
+                );
+
+                cooldownTimer = null;
+            }
+
+        }
+
+
+        function startCooldown(seconds) {
+
+            clearCooldownTimer();
+
+            cooldownRemaining =
+                Math.max(
+                    0,
+                    Math.ceil(seconds)
+                );
+
+            updateResendButton();
+
+
+            if (cooldownRemaining <= 0) {
+
+                resendButton.disabled =
+                    false;
+
+                return;
+            }
+
+
+            resendButton.disabled =
+                true;
+
+
+            cooldownTimer =
+                setInterval(
+                    function () {
+
+                        cooldownRemaining--;
+
+                        if (
+                            cooldownRemaining <= 0
+                        ) {
+
+                            cooldownRemaining =
+                                0;
+
+                            clearCooldownTimer();
+                        }
+
+                        updateResendButton();
+
+                    },
+                    1000
+                );
+        }
+
+
+        function updateResendButton() {
+
+            const t =
+                translations[
+                    currentLanguage
+                ];
+
+
+            if (
+                cooldownRemaining > 0
+            ) {
+
+                resendButton.disabled =
+                    true;
+
+                resendButton.textContent =
+                    t.resendIn.replace(
+                        "{seconds}",
+                        cooldownRemaining
+                    );
+
+            } else {
+
+                resendButton.disabled =
+                    false;
+
+                resendButton.textContent =
+                    t.resendCode;
+            }
+
+        }
+
+
+        /* =========================
+           SEND VERIFICATION CODE
+        ========================= */
+
+        async function sendVerificationCode() {
+
+            const email =
+                studentData.email;
+
+
+            const response =
+                await fetch(
+                    "/send-code",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            email: email
+                        })
+                    }
+                );
+
+
+            let result = {};
+
+
+            try {
+
+                result =
+                    await response.json();
+
+            } catch (error) {
+
+                result = {};
+            }
+
+
+            /* =========================
+               COOLDOWN FROM BACKEND
+            ========================= */
+
+            if (
+                response.status === 429 &&
+                result.cooldown
+            ) {
+
+                const remaining =
+                    result.remaining_seconds ||
+                    60;
+
+
+                startCooldown(
+                    remaining
+                );
+
+
+                const message =
+                    translations[
+                        currentLanguage
+                    ]
+                    .cooldownMessage
+                    .replace(
+                        "{seconds}",
+                        remaining
+                    );
+
+
+                throw new Error(
+                    message
+                );
+            }
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    result.message ||
+                    (
+                        currentLanguage === "ar"
+                            ? "حدث خطأ أثناء إرسال الكود."
+                            : "An error occurred while sending the code."
+                    )
+                );
+            }
+
+
+            return result;
+        }
+
+
+        /* =========================
+           STEP 1
+           REGISTRATION
+        ========================= */
+
+        studentForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+
+                clearMessage(
+                    "registrationMessage"
+                );
+
+
+                const email =
+                    document.getElementById(
+                        "email"
+                    )
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+                const name =
+                    document.getElementById(
+                        "name"
+                    )
+                    .value
+                    .trim();
+
+
+                const grade =
+                    document.getElementById(
+                        "grade"
+                    )
+                    .value;
+
+
+                if (
+                    !email ||
+                    !name ||
+                    !grade
+                ) {
+
+                    showMessage(
+                        "registrationMessage",
+
+                        currentLanguage === "ar"
+                            ? "من فضلك أكمل جميع البيانات."
+                            : "Please complete all fields.",
+
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                studentData = {
+
+                    email: email,
+
+                    name: name,
+
+                    grade: grade
+
+                };
+
+
+                const continueButton =
+                    document.getElementById(
+                        "continueButton"
+                    );
+
+
+                continueButton.disabled =
+                    true;
+
+
+                try {
+
+                    await sendVerificationCode();
+
+
+                    document.getElementById(
+                        "verificationEmail"
+                    )
+                    .textContent =
+                        email;
+
+
+                    verificationCode.value =
+                        "";
+
+
+                    showSection(
+                        "verificationSection"
+                    );
+
+
+                    startCooldown(
+                        SEND_COOLDOWN_SECONDS
+                    );
+
+
+                    verificationCode.focus();
+
+
+                } catch (error) {
+
+                    showMessage(
+                        "registrationMessage",
+                        error.message,
+                        "error"
+                    );
+
+                } finally {
+
+                    continueButton.disabled =
+                        false;
+                }
+
+            }
+        );
+
+
+        /* =========================
+           STEP 2
+           VERIFY CODE
+        ========================= */
+
+        verifyButton.addEventListener(
+            "click",
+            async function () {
+
+                clearMessage(
+                    "verificationMessage"
+                );
+
+
+                const code =
+                    verificationCode.value
+                        .trim();
+
+
+                if (
+                    !/^\d{6}$/.test(code)
+                ) {
+
+                    showMessage(
+                        "verificationMessage",
+
+                        currentLanguage === "ar"
+                            ? "أدخل رمز التحقق المكون من 6 أرقام."
+                            : "Enter the 6-digit verification code.",
+
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                verifyButton.disabled =
+                    true;
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "/verify-code",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body: JSON.stringify({
+
+                                    email:
+                                        studentData.email,
+
+                                    code:
+                                        code
+
+                                })
+                            }
+                        );
+
+
+                    const result =
+                        await response.json();
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            result.message ||
+                            (
+                                currentLanguage === "ar"
+                                    ? "رمز التحقق غير صحيح."
+                                    : "Invalid verification code."
+                            )
+                        );
+                    }
+
+
+                    clearCooldownTimer();
+
+                    cooldownRemaining = 0;
+
+                    resendButton.disabled =
+                        true;
+
+                    updateResendButton();
+
+
+                    showSection(
+                        "accountSection"
+                    );
+
+
+                } catch (error) {
+
+                    showMessage(
+                        "verificationMessage",
+                        error.message,
+                        "error"
+                    );
+
+                } finally {
+
+                    verifyButton.disabled =
+                        false;
+                }
+
+            }
+        );
+
+
+        /* =========================
+           RESEND CODE
+        ========================= */
+
+        resendButton.addEventListener(
+            "click",
+            async function () {
+
+                if (
+                    cooldownRemaining > 0
+                ) {
+
+                    return;
+                }
+
+
+                clearMessage(
+                    "verificationMessage"
+                );
+
+
+                resendButton.disabled =
+                    true;
+
+
+                try {
+
+                    await sendVerificationCode();
+
+
+                    verificationCode.value =
+                        "";
+
+
+                    startCooldown(
+                        SEND_COOLDOWN_SECONDS
+                    );
+
+
+                    showMessage(
+                        "verificationMessage",
+
+                        currentLanguage === "ar"
+                            ? "تم إرسال رمز تحقق جديد إلى بريدك الإلكتروني."
+                            : "A new verification code has been sent to your email.",
+
+                        "success"
+                    );
+
+
+                    verificationCode.focus();
+
+
+                } catch (error) {
+
+                    showMessage(
+                        "verificationMessage",
+                        error.message,
+                        "error"
+                    );
+
+
+                    if (
+                        cooldownRemaining <= 0
+                    ) {
+
+                        resendButton.disabled =
+                            false;
+                    }
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        backButton.addEventListener(
+            "click",
+            function () {
+
+                clearMessage(
+                    "verificationMessage"
+                );
+
+
+                clearCooldownTimer();
+
+                cooldownRemaining = 0;
+
+
+                resendButton.disabled =
+                    true;
+
+                updateResendButton();
+
+
+                showSection(
+                    "registrationSection"
+                );
+
+            }
+        );
+
+
+        /* =========================
+           ONLY NUMBERS IN CODE
+        ========================= */
+
+        verificationCode.addEventListener(
+            "input",
+            function () {
+
+                this.value =
+                    this.value
+                        .replace(/\D/g, "")
+                        .slice(0, 6);
+
+            }
+        );
+
+
+        /* =========================
+           STEP 3
+           CREATE ACCOUNT
+        ========================= */
+
+        accountForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+
+                clearMessage(
+                    "accountMessage"
+                );
+
+
+                const password =
+                    document.getElementById(
+                        "password"
+                    )
+                    .value;
+
+
+                const confirmPassword =
+                    document.getElementById(
+                        "confirmPassword"
+                    )
+                    .value;
+
+
+                if (
+                    password !==
+                    confirmPassword
+                ) {
+
+                    showMessage(
+                        "accountMessage",
+
+                        translations[
+                            currentLanguage
+                        ]
+                        .passwordMismatch,
+
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                const createButton =
+                    document.getElementById(
+                        "createAccountButton"
+                    );
+
+
+                createButton.disabled =
+                    true;
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "/register",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body: JSON.stringify({
+
+                                    email:
+                                        studentData.email,
+
+                                    name:
+                                        studentData.name,
+
+                                    grade:
+                                        studentData.grade,
+
+                                    password:
+                                        password
+
+                                })
+                            }
+                        );
+
+
+                    const result =
+                        await response.json();
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            result.message ||
+                            (
+                                currentLanguage === "ar"
+                                    ? "حدث خطأ أثناء إنشاء الحساب."
+                                    : "An error occurred while creating the account."
+                            )
+                        );
+                    }
+
+
+                    showMessage(
+                        "accountMessage",
+
+                        translations[
+                            currentLanguage
+                        ]
+                        .accountCreated,
+
+                        "success"
+                    );
+
+
+                    accountForm.reset();
+
+
+                } catch (error) {
+
+                    showMessage(
+                        "accountMessage",
+                        error.message,
+                        "error"
+                    );
+
+                } finally {
+
+                    createButton.disabled =
+                        false;
+                }
+
+            }
+        );
+
+
+        /* =========================
+           LOGIN
+        ========================= */
+
+        loginForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+
+                clearMessage(
+                    "loginMessage"
+                );
+
+
+                const email =
+                    document.getElementById(
+                        "loginEmail"
+                    )
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+                const password =
+                    document.getElementById(
+                        "loginPassword"
+                    )
+                    .value;
+
+
+                if (
+                    !email ||
+                    !password
+                ) {
+
+                    showMessage(
+                        "loginMessage",
+
+                        currentLanguage === "ar"
+                            ? "من فضلك أدخل البريد الإلكتروني وكلمة المرور."
+                            : "Please enter your email and password.",
+
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                const loginButton =
+                    document.getElementById(
+                        "loginButton"
+                    );
+
+
+                loginButton.disabled =
+                    true;
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "/login",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body: JSON.stringify({
+
+                                    email:
+                                        email,
+
+                                    password:
+                                        password
+
+                                })
+                            }
+                        );
+
+
+                    const result =
+                        await response.json();
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            result.message ||
+                            (
+                                currentLanguage === "ar"
+                                    ? "البريد الإلكتروني أو كلمة المرور غير صحيحة."
+                                    : "Invalid email or password."
+                            )
+                        );
+                    }
+
+
+                    const name =
+                        result.student &&
+                        result.student.name
+                            ? result.student.name
+                            : "";
+
+
+                    const successMessage =
+                        translations[
+                            currentLanguage
+                        ]
+                        .loginSuccess
+                        .replace(
+                            "{name}",
+                            name
+                        );
+
+
+                    showMessage(
+                        "loginMessage",
+                        successMessage,
+                        "success"
+                    );
+
+
+                    loginForm.reset();
+
+
+                    console.log(
+                        "Logged in student:",
+                        result.student
+                    );
+
+
+                    /*
+                       مؤقتًا هنفضل في صفحة الدخول.
+
+                       بعد ما نتأكد إن Login شغال،
+                       هننقل المستخدم إلى Dashboard
+                       الحقيقي بتاع Nexra Education.
+                    */
+
+                } catch (error) {
+
+                    showMessage(
+                        "loginMessage",
+                        error.message,
+                        "error"
+                    );
+
+                } finally {
+
+                    loginButton.disabled =
+                        false;
+                }
+
+            }
+        );
+
+
+        /* =========================
+           INITIAL LANGUAGE
+        ========================= */
+
+        changeLanguage("ar");
+
+    </script>
+
+</body>
+              </html>
